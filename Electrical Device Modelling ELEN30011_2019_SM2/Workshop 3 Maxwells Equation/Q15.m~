@@ -1,0 +1,18 @@
+clear all
+close all
+clc
+
+theta = 0:.25*pi:pi;
+phi = 0:.25*pi:2*pi;
+r = [0:.2:.8 1:.5:3];
+[tt,pp,rr] = meshgrid(theta,phi,r);
+xx = rr.*sin(tt).*cos(pp);
+yy = rr.*sin(tt).*sin(pp);
+zz = rr.*cos(tt);
+Exx = ((rr.^2/4).*(rr>=0&rr<+1) + ((rr.^(-2).*(1/4))).*(rr>1)).*xx;
+Eyy = ((rr.^2/4).*(rr>=0&rr<+1) + ((rr.^(-2).*(1/4))).*(rr>1)).*yy;
+Ezz = ((rr.^2/4).*(rr>=0&rr<+1) + ((rr.^(-2).*(1/4))).*(rr>1)).*zz;
+figure(1);
+quiver3(xx,yy,zz,Exx,Eyy,Ezz,0.5);
+grid on;
+xlabel('x'); ylabel('y'); zlabel('z');
